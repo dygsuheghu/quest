@@ -1,23 +1,14 @@
-function zigzagLevelOrder(root) {
-  if (!root) return [];
-  const result = [];
-  let isReverse = false;
-  const queue = [root];
-  while (queue.length) {
-    const size = queue.length;
-    const level = [];
-    for (let i = 0; i < size; i++) {
-      const node = queue.shift();
-      if (isReverse) {
-        level.unshift(node.val);
-      } else {
-        level.push(node.val);
-      }
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-    result.push(level);
-    isReverse = !isReverse;
+const insertionSortRecursive = (arr, n = arr.length) => {
+  if (n <= 1) {
+    return arr;
   }
-  return result;
-}
+  insertionSortRecursive(arr, n - 1);
+  const last = arr[n - 1];
+  let j = n - 2;
+  while (j >= 0 && arr[j] > last) {
+    arr[j + 1] = arr[j];
+    j--;
+  }
+  arr[j + 1] = last;
+  return arr;
+};
