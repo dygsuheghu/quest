@@ -1,14 +1,9 @@
-const insertionSortRecursive = (arr, n = arr.length) => {
-  if (n <= 1) {
-    return arr;
+function isSymmetric(root) {
+  if (!root) return true;
+  return isMirror(root.left, root.right);
+  function isMirror(left, right) {
+    if (!left && !right) return true;
+    if (!left || !right || left.val !== right.val) return false;
+    return isMirror(left.left, right.right) && isMirror(left.right, right.left);
   }
-  insertionSortRecursive(arr, n - 1);
-  const last = arr[n - 1];
-  let j = n - 2;
-  while (j >= 0 && arr[j] > last) {
-    arr[j + 1] = arr[j];
-    j--;
-  }
-  arr[j + 1] = last;
-  return arr;
-};
+}
